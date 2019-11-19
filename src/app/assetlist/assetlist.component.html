@@ -1,0 +1,72 @@
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="assetadd" class="nav-link" routerLinkActive="active">Add Asset</a>
+        </li>
+        <li class="nav-item">
+            <a href="assetlist" class="nav-link" routerLinkActive="active">List Asset</a>
+        </li>
+
+
+    </ul>
+<button (click)="logout()" class="btn btn-primary">Logout</button>
+
+</nav>
+<!--input type="text" [(ngModel)]="searchstring" (ngModelChange)="search(searchstring)" placeholder="search product"
+    class="form-control" style="width:500px;"-->
+
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2>Asset List</h2>
+    </div>
+    <!--select required #mySelect (change)='onOptionsSelected(mySelect.value)'>
+        <option value="">Choose EmployeeCategory</option>
+        <option value="0" >All</option>
+        <option *ngFor="let emp of category | async" value="{{emp.categoryid}}">{{emp.categoryname}}</option>
+      </select-->
+
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Asset ID</th>
+                    <th>Asset Name</th>
+                    <th>Asset Type</th>
+                    <th>Asset Class</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let asset of assets  | async  ">
+                    <td>{{asset.ad_id}}</td>
+                    <td>{{asset.ad_name}}</td>
+                    <td>{{asset.ad_type_id}}</td>
+                    <td>{{asset.ad_class}}</td>
+
+                    <!--td><button type="button" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                            (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="error"
+                            (click)="confirmClicked=false;
+              cancelClicked=false" [appendToBody]="true" (confirm)=deleteasset(asset.ad_id)
+                            class="btn btn-danger">Delete</button-->
+                        <td><button [routerLink]="['/edit',assets.ad_id]" class="btn btn-info"
+                            style="margin-left: 10px">Update</button>
+                            <button [routerLink]="['/edit',assets.ad_id]" class="btn btn-info"
+                            style="margin-left: 10px">Delete</button>
+                        <button class="btn btn-info" style="margin-left: 10px">Details</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <!--pagination-controls (pageChange)="p=$event"></pagination-controls-->
+    </div>
+
+
+
+</div>
