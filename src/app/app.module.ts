@@ -12,14 +12,32 @@ import { AssetaddComponent } from './assetadd/assetadd.component';
 import { AsseteditComponent } from './assetedit/assetedit.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import {NgxPaginationModule} from 'ngx-pagination'
+import { VendoraddComponent } from './vendoradd/vendoradd.component';
+import { VendoreditComponent } from './vendoredit/vendoredit.component';
+import { VendorlistComponent } from './vendorlist/vendorlist.component';
+import { PurchaseaddComponent } from './purchaseadd/purchaseadd.component';
+import { PurchaselistComponent } from './purchaselist/purchaselist.component';
+import { PurchaseeditComponent } from './purchaseedit/purchaseedit.component';
+import { AssetmasterComponent } from './assetmaster/assetmaster.component';
+import { AssetmasterlistComponent } from './assetmasterlist/assetmasterlist.component';
+import { AssetmasterorderComponent } from './assetmasterorder/assetmasterorder.component';
 @NgModule({
   declarations: [
     AppComponent,
     AssetlistComponent,
     AssetaddComponent,
     AsseteditComponent,
-    LoginComponent
+    LoginComponent,
+    VendoraddComponent,
+    VendoreditComponent,
+    VendorlistComponent,
+    PurchaseaddComponent,
+    PurchaselistComponent,
+    PurchaseeditComponent,
+    AssetmasterComponent,
+    AssetmasterlistComponent,
+    AssetmasterorderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
       autoDismiss: true,
       enableHtml: true
     }), 
+
+    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

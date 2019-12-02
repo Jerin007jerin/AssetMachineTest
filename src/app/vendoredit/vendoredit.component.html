@@ -1,0 +1,70 @@
+<form [formGroup]="vendorform" (ngSubmit)="updatevendor()">
+
+    <input type="hidden" #vendorid [(ngModel)]="vendor.vd_id" formControlName="vd_id">
+
+    <div class="form-group" [ngClass]="{'has-error':isSubmitted && formControls.vd_name.errors}">
+        <label for="vd_name">Vendor Name</label>
+        <input type="text" class="form-control" #vendorname [(ngModel)]="vendor.vd_name" placeholder="Enter name"
+            formControlName="vd_name">
+    </div>
+<br>
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor type</label>
+        <input class="form-control" value="{{vendor.vd_type}}" formControlName="vd_type" #vendortype
+            [(ngModel)]="vendor.vd_type">
+    </div>
+    <div *ngIf="vendorform.controls['vd_type'].invalid && (vendorform.controls['vd_type'].dirty || vendorform.controls['vd_type'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="vendorform.controls['vd_type'].errors.required">
+        </div>
+    </div>
+    <br>
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Asset Type</label>
+
+        <select class="form-control" id="vd_atype_id" #assettype [(ngModel)]="vendor.vd_atype_id" name="vd_atype_id"
+            formControlName="vd_atype_id">
+            <option value="">Choose Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}
+            </option>
+        </select>
+    </div>
+
+    <div *ngIf="vendorform.controls['vd_atype_id'].invalid && (vendorform.controls['vd_atype_id'].dirty || vendorform.controls['vd_atype_id'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="vendorform.controls['vd_atype_id'].errors.required">
+            Asset Type is required.
+        </div>
+    </div>
+    <br>
+
+    <!--div *ngIf="isSubmitted && formControls.ad_name.errors" class="help-block">
+  <div *ngIf="formControls.ad_name.errors.required">name is Required</div>
+</div-->
+    <div class="form-group" [ngClass]="{'has-error':isSubmitted && formControls.vd_from.errors}">
+        <label for="vd_from">Valid From</label>
+        <input type="date" class="form-control" value="{{vendor.vd_fromStr}}" #valid from
+            [(ngModel)]="vendor.vd_fromStr" formControlName="vd_from">
+    </div>
+    <br>
+
+    <div class="form-group" [ngClass]="{'has-error':isSubmitted && formControls.vd_to.errors}">
+        <label for="vd_to">Valid To</label>
+        <input type="date" class="form-control" value="{{vendor.vd_toStr}}" #valid to [(ngModel)]="vendor.vd_toStr"
+            formControlName="vd_to">
+    </div>
+    
+    <br>
+
+    <div class="form-group" [ngClass]="{'has-error':isSubmitted && formControls.vd_addr.errors}">
+        <label for="vd_addr">Address</label>
+        <input type="text" class="form-control" placeholder="" #vendoraddress [(ngModel)]="vendor.vd_addr"
+            name="vd_addr" formControlName="vd_addr">
+    </div>
+    <br>
+
+
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="vendorform.pristine||vendorform.invalid">Update</button>
+</form>

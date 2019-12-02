@@ -1,0 +1,72 @@
+<form [formGroup]="purchaseform" novalidate (ngSubmit)="updatePurchase()">
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Order Number</label>
+        <input type="text" [(ngModel)]="purchases.pd_order_no" readonly="true" class="form-control"
+          formControlName="pd_order_no" 
+          #pd_order_no />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Asset Name</label>
+        <input type="text" [(ngModel)]="purchases.pd_ad_id" readonly="true" class="form-control"
+          formControlName="pd_ad_id" 
+          #pd_ad_id />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Name</label>
+        <input type="text" [(ngModel)]="purchases.pd_vendor_id" readonly="true" class="form-control"
+          formControlName="pd_vendor_id" 
+          #pd_vendor_id />
+      </div> 
+
+
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Asset Type</label>
+        <input type="text" readonly="true" [(ngModel)]="purchases.pd_type_id" readonly="true" class="form-control"
+          formControlName="pd_type_id" 
+          #pd_type_id />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Quantity</label>
+        <input type="text" [(ngModel)]="purchases.pd_qty" readonly="true" class="form-control"
+          formControlName="pd_qty" 
+          #pd_qty />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Status</label>
+        <input type="text" [(ngModel)]="purchases.pd_status" readonly="true" class="form-control"
+          formControlName="pd_status" 
+          #pd_status />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Order Date</label>
+        <input type="date" [(ngModel)]="purchases.pd_odateStr" readonly="true" class="form-control"
+          formControlName="pd_odate" 
+          #pd_odate />
+      </div> 
+
+      <div [ngClass]="form-group">
+        <label class="col-md-4">Delivery Date</label>
+        <input type="date" [(ngModel)]="purchases.pd_ddateStr"  class="form-control"
+          formControlName="pd_ddate" 
+          #pd_ddate />
+      </div> 
+      <div *ngIf="purchaseform.controls['pd_ddateStr'].invalid && (purchaseform.controls['pd_ddateStr'].dirty || purchaseform.controls['pd_ddateStr'].touched)" class="alert alert-danger">
+        <div *ngIf="purchaseform.controls['pd_ddateStr'].errors.required">
+          Delivery Date is required.
+        </div>
+      </div>
+
+  <br>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary"
+    [disabled]="purchaseform.pristine || purchaseform.invalid" >
+      Consignment Recieved
+    </button>
+</div>
+  </form>

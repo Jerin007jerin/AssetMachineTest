@@ -1,13 +1,75 @@
-<section>
-    <form [formGroup]="loginform" (ngSubmit)="LogIN()">
-        <h1>LOGIN</h1>
-        <div class="alignment">
-            <input type="text" placeholder="Enter Username" formControlName="email">
+<h1 style="text-align: center"></h1>
+<div class="login">
+    <h2 class="login-header">LOGIN</h2>
+    <form [formGroup]="loginform" class="login-container" (ngSubmit)="loginUser()">
+        <p [ngClass]="{'has-error':isSubmitted && formControls.uname.errors}">
+            <input type="text" placeholder="email" formControlName="uname">
+        </p>
+        <div *ngIf="isSubmitted && formControls.uname.errors" class="help-block">
+            <div *ngIf="formControls.uname.errors.required">username is required</div>
         </div>
-        <div class="alignment">
-            <input type="password" placeholder="Enter Password" formControlName="pass">
-        </div>
-        <button type="submit">Login</button>
-
+        <p [ngClass]="{'has-error':isSubmitted && formControls.pass.errors}">
+                <input type="password" placeholder="password" formControlName="pass">
+            </p>
+            <div *ngIf="isSubmitted && formControls.pass.errors" class="help-block">
+                <div *ngIf="formControls.pass.errors.required">password is required</div>
+            </div>
+        <p>
+            <input type="submit" value="Log in">
+        </p>
     </form>
-</section>
+
+</div>
+
+
+
+
+
+    <!--div class="login">
+        <h2 class="login-header">REGISTER</h2>
+        <form [formGroup]="registerform" (ngSubmit)="register()">
+            <h1></h1>
+            <p></p>
+
+            <div class="alignment">
+                <input type="text" placeholder="Enter firstname" formControlName="fname">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter lastname" formControlName="lname">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter DOB" formControlName="DOB">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter Gender" formControlName="gender">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter address" formControlName="addr">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter Phone number" formControlName="phno">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter username" formControlName="uname">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="Enter password" formControlName="pass">
+            </div>
+            <div class="alignment">
+                <input type="text" placeholder="confirm password" formControlName="rpass">
+            </div>
+
+            <div [ngClass]="form-group" class="alignment">
+
+                <select formControlName="u_id">
+                    <option value="">Select Usertype</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+            </div>
+
+            <p>
+                <button type="submit">Register</button>
+            </p>
+        </form>
+    </div-->

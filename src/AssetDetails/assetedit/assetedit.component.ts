@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Asset } from '../asset';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AssetService } from '../asset.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Assettype } from '../assettype';
+import { Assettype } from 'src/app/assettype';
+import { AssetService } from 'src/app/asset.service';
+import { Asset } from 'src/app/asset';
 
 @Component({
   selector: 'app-assetedit',
@@ -17,7 +17,7 @@ export class AsseteditComponent implements OnInit {
   assettypes: Observable<Assettype[]>;
   
   assetform: FormGroup;
-  constructor(private formbuilder: FormBuilder, private assetservice: AssetService, private toastr: ToastrService, private router: ActivatedRoute,private route:Router) { }
+  constructor(private formbuilder: FormBuilder, private assetservice:AssetService, private toastr: ToastrService, private router: ActivatedRoute,private route:Router) { }
   id: number;
   ngOnInit() {
 

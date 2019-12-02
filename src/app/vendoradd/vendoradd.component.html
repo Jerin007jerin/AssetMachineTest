@@ -1,0 +1,68 @@
+<form [formGroup]="vendorform"  (ngSubmit)="addvendor()">
+    <!--div class="form-group" [ngClass]="{'has-error':isSubmitted && formControls.ad_name.errors}"-->
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Name</label>
+        <input type="text" class="form-control" placeholder="Enter name" formControlName="vd_name">
+    </div>
+
+    <br>
+
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Type</label>
+        <input type="text"  class="form-control" formControlName="vd_type" readonly="true">
+    </div>
+<br>
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Asset Type</label>
+
+        <select class="form-control" id="vd_atype_id" name="vd_atype_id" formControlName="vd_atype_id">
+            <option value="">Choose Asset Type</option>
+            <option *ngFor="let assettype of assettypes | async" value="{{assettype.at_id}}">{{assettype.at_name}}
+            </option>
+        </select>
+    </div>
+
+    <div *ngIf="vendorform.controls['vd_atype_id'].invalid && (vendorform.controls['vd_atype_id'].dirty || vendorform.controls['vd_atype_id'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="vendorform.controls['vd_atype_id'].errors.required">
+            Asset Type is required.
+        </div>
+    </div>
+<br>
+<div [ngClass]="form-group">
+    <label class="col-md-4">Valid from</label>
+    <input type="date"  class="form-control" formControlName="vd_from">
+</div>
+<br>
+
+<div [ngClass]="form-group">
+    <label class="col-md-4">Valid to</label>
+    <input type="date"  class="form-control" formControlName="vd_to">
+</div>
+<br>
+<div [ngClass]="form-group">
+    <label class="col-md-4">Vendor Address</label>
+    <input type="text"  class="form-control" formControlName="vd_addr">
+</div>
+
+
+
+
+
+    <!--div *ngIf="assetform.controls['vd_type'].invalid && (assetform.controls['ad_class'].dirty || assetform.controls['ad_class'].touched)" class="alert alert-danger">
+        <div *ngIf="assetform.controls['ad_class'].errors.required">
+          Asset Class is required.
+        </div>
+      </div-->
+
+    <!--div *ngIf="isSubmitted && formControls.ad_name.errors" class="help-block">
+      <div *ngIf="formControls.ad_name.errors.required">name is Required</div>
+  </div-->
+
+<div class="form-group">
+    <button type="submit" class="btn btn-primary" [disabled]="vendorform.pristine || vendorform.invalid">Create Vendor </button>
+</div>
+ 
+</form>
+
+

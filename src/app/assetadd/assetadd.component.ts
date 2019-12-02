@@ -3,6 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Asset } from '../asset';
 import { AssetService } from '../asset.service';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+
+import { Router } from '@angular/router';
+import { Assettype } from '../assettype';
 
 @Component({
   selector: 'app-assetadd',
@@ -12,7 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AssetaddComponent implements OnInit {
 assetform:FormGroup;
 assets:Asset=new Asset();
-  constructor(private formbuilder:FormBuilder,private assetservice:AssetService,private toastr:ToastrService) { }
+assettypes:Observable<Assettype[]>;
+  constructor(private formbuilder:FormBuilder,private assetservice:AssetService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.assetform=this.formbuilder.group({
@@ -20,6 +25,7 @@ assets:Asset=new Asset();
       ad_type_id:['',[Validators.required]],
       ad_class:['',[Validators.required]]
     });
+    this.assettypes=this.assetservice.getAssettype();
   }
   get formControls()
   {
@@ -27,16 +33,27 @@ assets:Asset=new Asset();
   }
   addasset()
   {
-    if(this.assetform.invalid)
+    /*if(this.assetform.invalid)
     {
       return
-    }
+    }*/
     this.assets.ad_name=this.assetform.controls.ad_name.value;
     this.assets.ad_type_id=this.assetform.controls.ad_type_id.value;
     this.assets.ad_class=this.assetform.controls.ad_class.value;
+    
     this.assetservice.AddAsset(this.assets).subscribe(x=>{
-      this.toastr.success('asset added')
+      if(x==0)
+      {
+        this.toastr.success('asset added')
+        this.router.navigate(['assetlist'])
+      }
+      else{
+      this.toastr.error("asset already exist")
+      
+      }
+     
     });
+    this.ngOnInit();
   }
   
 
